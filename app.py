@@ -111,7 +111,6 @@ costo_total = consumo_total_mes * TARIFA
 st.markdown(f"<b>Consumo total de la casa (mes):</b> {consumo_total_mes:.2f} kWh &nbsp;&nbsp;|&nbsp;&nbsp; <b>${costo_total:,.0f}</b>", unsafe_allow_html=True)
 
 # Boleta del mes pasado
-st.markdown('<div class="boleta">', unsafe_allow_html=True)
 st.markdown(f'<div class="boleta-title">Boleta del mes pasado</div>', unsafe_allow_html=True)
 tabla_boleta = [
     {"Enchufe": NOMBRES[i][0], "Dispositivo": NOMBRES[i][1], "Total kWh": f"{sum([d if st.session_state['estados'][i] else 0 for d in datos[i]]):.2f}", "Total $": f"${sum([d if st.session_state['estados'][i] else 0 for d in datos[i]])*TARIFA:,.0f}"}
@@ -130,8 +129,6 @@ for row in tabla_boleta:
     html_boleta += '</tr>'
 html_boleta += '</tbody></table>'
 st.markdown(html_boleta, unsafe_allow_html=True)
-st.markdown(f'<div class="boleta-total">Total mes: <b>{consumo_total_mes:.2f} kWh</b> &nbsp;&nbsp;|&nbsp;&nbsp; <b>${costo_total:,.0f}</b></div>', unsafe_allow_html=True)
-st.markdown('</div>', unsafe_allow_html=True)
 
 # Barra de navegación inferior
 st.markdown(f"""
