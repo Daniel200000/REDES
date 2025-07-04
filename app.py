@@ -110,13 +110,6 @@ consumo_total_mes = sum(consumo_total_diario)
 costo_total = consumo_total_mes * TARIFA
 st.markdown(f"<b>Consumo total de la casa (mes):</b> {consumo_total_mes:.2f} kWh &nbsp;&nbsp;|&nbsp;&nbsp; <b>${costo_total:,.0f}</b>", unsafe_allow_html=True)
 
-# Boleta del mes pasado
-st.markdown('<div class="boleta">', unsafe_allow_html=True)
-st.markdown(f'<div class="boleta-title">Boleta del mes pasado</div>', unsafe_allow_html=True)
-tabla_boleta = [
-    {"Enchufe": NOMBRES[i][0], "Dispositivo": NOMBRES[i][1], "Total kWh": f"{sum([d if st.session_state['estados'][i] else 0 for d in datos[i]]):.2f}", "Total $": f"${sum([d if st.session_state['estados'][i] else 0 for d in datos[i]])*TARIFA:,.0f}"}
-    for i in range(N_ENCHUFES)
-]
 # Renderizar tabla boleta con colores personalizados
 html_boleta = '<table class="custom-table" style="width:100%; border-radius:8px; border-collapse:collapse;">'
 html_boleta += '<thead><tr>'
